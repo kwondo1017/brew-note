@@ -2,6 +2,7 @@ package org.travelslog.brewnote.bean.model;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,8 +15,11 @@ import jakarta.persistence.Table;
 public class Bean {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
+    @Column(nullable = false)
     private String beanName; // NOT NULL
+
     private String beanImageUrl; // 원두 사진
     private String roastery; 
     private String country;

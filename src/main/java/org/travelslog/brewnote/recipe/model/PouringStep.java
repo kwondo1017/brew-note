@@ -1,5 +1,8 @@
 package org.travelslog.brewnote.recipe.model;
 
+import org.checkerframework.checker.units.qual.C;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,12 +15,16 @@ import jakarta.persistence.Table;
 public class PouringStep {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
+    @Column(nullable = false)
     private Long recipeId; // NOT NULL
+    @Column(nullable = false)
     private String stepName; // NOT NULL
+    @Column(nullable = false)
     private String stepNote; // NOT NULL
+    @Column(nullable = false)
     private String stepTime; // NOT NULL
-    private int pouringOrder; // 단계 순서 인덱스
 
     @ManyToOne
     private Recipe recipe; // NOT NULL

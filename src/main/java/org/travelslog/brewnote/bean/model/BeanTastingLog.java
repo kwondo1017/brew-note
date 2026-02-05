@@ -2,6 +2,7 @@ package org.travelslog.brewnote.bean.model;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,12 +16,17 @@ import jakarta.persistence.Table;
 public class BeanTastingLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
+    @Column(nullable = false)
     private Long beanId; // NOT NULL
+    @Column(nullable = false)
     private Date tastingDate; // NOT NULL
     private int beanScore; // 0-100
+    @Column(nullable = false)
     private String tastingNote; // NOT NULL
 
+    @Column(nullable = false)
     @ManyToOne
     private Bean bean; // NOT NULL
 

@@ -2,6 +2,7 @@ package org.travelslog.brewnote.recipe.model;
 
 import org.travelslog.brewnote.recipe.BeverageType;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,9 @@ import jakarta.persistence.Table;
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
+    @Column(nullable = false)
     private String recipeName; // NOT NULL
     private BeverageType beverageType; // Hot, Iced
     private String dripper;

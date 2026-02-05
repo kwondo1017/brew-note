@@ -2,6 +2,7 @@ package org.travelslog.brewnote.bean.model;
 
 import org.travelslog.brewnote.bean.types.CupNoteType;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,14 +15,20 @@ import jakarta.persistence.Table;
 public class BeanTastingLogCupNote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
+    @Column(nullable = false)
     private Long beanTastingLogId; // NOT NULL
+    @Column(nullable = false)
     private Long cupNoteId; // NOT NULL
+    @Column(nullable = false)
     private CupNoteType cupNoteType; // NOT NULL
 
+    @Column(nullable = false)
     @ManyToOne
     private BeanTastingLog beanTastingLog; // NOT NULL
 
+    @Column(nullable = false)
     @ManyToOne
     private CupNote cupNote; // NOT NULL
 }
