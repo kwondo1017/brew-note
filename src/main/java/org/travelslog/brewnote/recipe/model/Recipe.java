@@ -1,9 +1,12 @@
 package org.travelslog.brewnote.recipe.model;
 
+import org.travelslog.brewnote.recipe.BeverageType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,4 +26,7 @@ public class Recipe {
     private int waterAmount; // 물량 (ml)
     private int waterTemperature; // 물 온도 (°C)
     private String recipeUrl; // 추출 레시피 URL
+
+    @OneToMany(mappedBy = "recipeId")
+    private java.util.List<PouringStep> pouringSteps;
 }

@@ -1,18 +1,26 @@
 package org.travelslog.brewnote.bean.model;
 
-import java.sql.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "cup_notes")
 public class CupNote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String tagName; // NOT NULL
+
+    @OneToMany(mappedBy = "cupNoteId")
+    private java.util.List<BeanCupNote> beanCupNotes;
 }

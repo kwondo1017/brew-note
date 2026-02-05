@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,4 +29,10 @@ public class Bean {
     private Date roastingDate;  // 로스팅 날짜
     private int price;
     private String purchaseUrl; // 구매 URL
+
+    @OneToMany(mappedBy = "beanId")
+    private java.util.List<BeanTastingLog> beanTastingLogs;
+
+    @OneToMany(mappedBy = "beanId")
+    private java.util.List<BeanCupNote> beanCupNotes;
 }
