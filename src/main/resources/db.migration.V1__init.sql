@@ -57,6 +57,7 @@ CREATE TYPE beverage_type AS ENUM ('HOT', 'ICED');
 
 CREATE TABLE recipe (
   id BIGSERIAL PRIMARY KEY,
+  recipe_name VARCHAR(255) NOT NULL,
   beverage_type beverage_type NOT NULL,
   dripper VARCHAR(100),
   filter VARCHAR(100),
