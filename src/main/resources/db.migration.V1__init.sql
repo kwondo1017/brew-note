@@ -12,9 +12,9 @@ CREATE TABLE bean (
   variety VARCHAR(255),
   altitude INTEGER,
   process VARCHAR(100),
-  roasting_point VARCHAR(50),
+  roasting_point INTEGER,
   roasting_date DATE,
-  price VARCHAR(50),
+  price INTEGER,
   purchase_url TEXT
 );
 
