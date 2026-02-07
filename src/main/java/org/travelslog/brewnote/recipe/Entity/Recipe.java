@@ -1,4 +1,4 @@
-package org.travelslog.brewnote.recipe.model;
+package org.travelslog.brewnote.recipe.Entity;
 
 import org.travelslog.brewnote.recipe.BeverageType;
 

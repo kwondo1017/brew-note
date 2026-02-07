@@ -15,8 +15,15 @@ CREATE TABLE bean (
   roasting_point INTEGER,
   roasting_date DATE,
   price INTEGER,
-  purchase_url TEXT
+  purchase_url TEXT,
+
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+  CREATE INDEX IF NOT EXISTS idx_bean_name ON bean (bean_name);
+  CREATE INDEX IF NOT EXISTS idx_bean_roastery ON bean (roastery);
+  CREATE INDEX IF NOT EXISTS idx_bean_country ON bean (country);
 
 CREATE TABLE bean_tasting_log (
   id BIGSERIAL PRIMARY KEY,

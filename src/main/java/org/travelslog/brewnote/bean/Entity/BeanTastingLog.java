@@ -1,4 +1,4 @@
-package org.travelslog.brewnote.bean.model;
+package org.travelslog.brewnote.bean.Entity;
 
 import java.sql.Date;
 
