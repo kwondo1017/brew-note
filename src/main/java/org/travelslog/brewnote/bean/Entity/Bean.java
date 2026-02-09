@@ -9,25 +9,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "beans")
+@Table(name = "bean")
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class Bean {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(nullable = false)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "bean_name", nullable = false)
     private String beanName; // NOT NULL
 
     @Column(name = "bean_image_url", columnDefinition = "TEXT")
@@ -46,7 +41,9 @@ public class Bean {
     private int altitude; // 재배 고도
     private String process; // 가공 방식
 
+    @Column(name = "roasting_point")
     private int roastingPoint; // 로스팅 포인트
+    @Column(name = "roasting_date")
     private Date roastingDate;  // 로스팅 날짜
 
     private int price;
@@ -57,16 +54,21 @@ public class Bean {
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime updatedAt;
 
-    @PrePersist
-    void prePersist() {
-        var now = OffsetDateTime.now();
-        createdAt = now;
-        updatedAt = now;
+    public Bean(String beanName) {
+        this.beanName = beanName;
     }
 
-    @PreUpdate
-    void preUpdate() {
-        updatedAt = OffsetDateTime.now();
+    public Bean(String beanName, String roastery, Integer price) {
+        this.beanName = beanName;
+        this.roastery = roastery;
+        this.price = price;
+    }
+
+    public void updateName(String beanName) {
+        if (beanName == null || beanName.isBlank()) {
+            throw new IllegalArgumentException("beanName must not be blank");
+        }
+        this.beanName = beanName;
     }
     
     @OneToMany(mappedBy = "beanId")
