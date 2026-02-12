@@ -26,12 +26,12 @@ public class BeanService {
                 .orElseThrow(() -> new IllegalArgumentException("Bean not found"));
     }
 
-    public void update(Long id, String beanName, String roastery, Integer price) {
+    public void update(Long id, String beanName, String roastery, Integer price, String purchaseUrl) {
         Bean bean = get(id);
-        bean.updateName(beanName, roastery, price);
+        bean.update(beanName, roastery, price, purchaseUrl);
     }
 
     public void delete(Long id) {
         beanRepository.deleteById(id);
     }
-}
+}   

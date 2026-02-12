@@ -1,6 +1,6 @@
 package org.travelslog.brewnote.bean.Entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 import jakarta.persistence.Column;
@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class Bean {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "bean_name", nullable = false)
@@ -38,47 +40,62 @@ public class Bean {
     private String producer;
     private String variety; // 원두 품종
 
-    private int altitude; // 재배 고도
+    private Integer altitude; // 재배 고도
     private String process; // 가공 방식
 
     @Column(name = "roasting_point")
-    private int roastingPoint; // 로스팅 포인트
+    private Integer roastingPoint; // 로스팅 포인트
     @Column(name = "roasting_date")
-    private Date roastingDate;  // 로스팅 날짜
+    private LocalDate roastingDate;  // 로스팅 날짜
 
-    private int price;
-
+    private Integer price;
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
 
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime updatedAt;
 
+    @PrePersist
+    void prePersist() {
+        var now = OffsetDateTime.now();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
+
+    @PreUpdate
+    void preUpdate() {
+        this.updatedAt = OffsetDateTime.now();
+    }
+
+    @OneToMany(mappedBy = "bean")
+    private java.util.List<BeanTastingLog> beanTastingLog = new java.util.ArrayList<>();
+
+    private static void requireNotBlank(String value, String msg) {
+        if (value == null || value.isBlank()) 
+            throw new IllegalArgumentException(msg);
+    }
+
     public Bean(String beanName) {
-        if (beanName == null || beanName.isBlank()) {
-            throw new IllegalArgumentException("beanName must not be blank");
-        }
+        requireNotBlank(beanName, "beanName must not be blank");
         this.beanName = beanName;
     }
 
-    public void updateName(String beanName, String roastery, Integer price) {
-        if (beanName == null || beanName.isBlank()) {
-            throw new IllegalArgumentException("beanName must not be blank");
+    public void update(String beanName, String roastery, Integer price, String purchaseUrl) {
+        if (beanName != null) {
+            requireNotBlank(beanName, "beanName must not be blank");
+            this.beanName = beanName;
         }
-        if (roastery == null || roastery.isBlank()) {
-            throw new IllegalArgumentException("roastery must not be blank");
+        if (roastery != null) {
+            requireNotBlank(roastery, "roastery must not be blank");
+            this.roastery = roastery;
         }
-        if (price == null || price < 0) {
-            throw new IllegalArgumentException("price must not be negative");
+        if (price != null) {
+            if (price < 0) throw new IllegalArgumentException("price must not be negative");
+            this.price = price;
         }
-        this.beanName = beanName;
-        this.roastery = roastery;
-        this.price = price;
+        if (purchaseUrl != null) {
+            requireNotBlank(purchaseUrl, "purchaseUrl must not be blank");
+            this.purchaseUrl = purchaseUrl;
+        }
     }
-    
-    @OneToMany(mappedBy = "beanId")
-    private java.util.List<BeanTastingLog> beanTastingLogs;
-
-    @OneToMany(mappedBy = "beanId")
-    private java.util.List<BeanCupNote> beanCupNotes;
 }

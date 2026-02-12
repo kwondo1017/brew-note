@@ -1,35 +1,43 @@
 package org.travelslog.brewnote.bean.Entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "bean_tasting_logs")
+@Getter
+@Table(name = "bean_tasting_log")
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class BeanTastingLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
-    @Column(nullable = false)
-    private Long beanId; // NOT NULL
-    @Column(nullable = false)
-    private Date tastingDate; // NOT NULL
-    private int beanScore; // 0-100
-    @Column(nullable = false)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bean_id", nullable = false)
+    private Bean bean;
+
+    @Column(name = "tasting_date", nullable = false)
+    private LocalDate tastingDate; // NOT NULL
+
+    @Column(name = "bean_score")
+    private Integer beanScore; // 0-100
+
+    @Column(name = "tasting_note", nullable = false)
     private String tastingNote; // NOT NULL
 
-    @Column(nullable = false)
-    @ManyToOne
-    private Bean bean; // NOT NULL
-
-    @OneToMany(mappedBy = "beanTastingLogId")
-    private java.util.List<BeanTastingLogCupNote> beanTastingLogCupNotes;
+    @OneToMany(mappedBy = "beanTastingLog")
+    private java.util.List<BeanTastingLogCupNote> beanTastingLogCupNotes = new ArrayList<>();
 }

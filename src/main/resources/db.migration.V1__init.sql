@@ -28,9 +28,9 @@ CREATE TABLE bean (
 CREATE TABLE bean_tasting_log (
   id BIGSERIAL PRIMARY KEY,
   bean_id BIGINT NOT NULL REFERENCES bean(id) ON DELETE CASCADE,
-  tasting_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  tasting_date DATE NOT NULL DEFAULT CURRENT_DATE,
   bean_score SMALLINT CHECK (bean_score BETWEEN 0 AND 100),
-  tasting_note TEXT
+  tasting_note TEXT NOT NULL
 );
 
 CREATE INDEX idx_tasting_log_bean_id ON bean_tasting_log(bean_id);
