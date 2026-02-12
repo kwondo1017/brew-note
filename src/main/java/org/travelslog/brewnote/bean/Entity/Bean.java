@@ -55,20 +55,25 @@ public class Bean {
     private OffsetDateTime updatedAt;
 
     public Bean(String beanName) {
-        this.beanName = beanName;
-    }
-
-    public Bean(String beanName, String roastery, Integer price) {
-        this.beanName = beanName;
-        this.roastery = roastery;
-        this.price = price;
-    }
-
-    public void updateName(String beanName) {
         if (beanName == null || beanName.isBlank()) {
             throw new IllegalArgumentException("beanName must not be blank");
         }
         this.beanName = beanName;
+    }
+
+    public void updateName(String beanName, String roastery, Integer price) {
+        if (beanName == null || beanName.isBlank()) {
+            throw new IllegalArgumentException("beanName must not be blank");
+        }
+        if (roastery == null || roastery.isBlank()) {
+            throw new IllegalArgumentException("roastery must not be blank");
+        }
+        if (price == null || price < 0) {
+            throw new IllegalArgumentException("price must not be negative");
+        }
+        this.beanName = beanName;
+        this.roastery = roastery;
+        this.price = price;
     }
     
     @OneToMany(mappedBy = "beanId")
