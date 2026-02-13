@@ -107,4 +107,17 @@ public class Bean {
     }
 
     // Bean 객체의 연관 관계 메소드
+    public void addBeanTastingLog(BeanTastingLog beanTastingLog) {
+        this.beanTastingLog.add(beanTastingLog);
+        if (beanTastingLog.getBean() != this) {
+            beanTastingLog.setBean(this);
+        }
+    }
+
+    public void addBeanCupNoteRelation(BeanCupNoteRelation beanCupNoteRelation) {
+        this.beanCupNoteRelation.add(beanCupNoteRelation);
+        if (beanCupNoteRelation.getBean() != this) {
+            beanCupNoteRelation.setBean(this);
+        }
+    }
 }

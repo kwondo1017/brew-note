@@ -17,9 +17,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "bean_tasting_log")
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class BeanTastingLog {
