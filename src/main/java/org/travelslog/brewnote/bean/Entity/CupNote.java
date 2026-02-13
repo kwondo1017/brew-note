@@ -15,15 +15,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "cup_notes")
+@Table(name = "cup_note")
 public class CupNote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
-    @Column(nullable = false)
+
+    @Column(name = "tag_name", nullable = false)
     private String tagName; // NOT NULL
 
-    @OneToMany(mappedBy = "cupNoteId")
-    private java.util.List<BeanCupNoteRelation> beanCupNotes;
+    @OneToMany(mappedBy = "cupNote")
+    private java.util.List<BeanCupNoteRelation> beanCupNoteRelation = new java.util.ArrayList<>();
 }
