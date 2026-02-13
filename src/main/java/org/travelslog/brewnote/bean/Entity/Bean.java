@@ -5,6 +5,7 @@ import java.time.OffsetDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.travelslog.brewnote.bean.entity.command.BeanUpdateCommand;
 import org.travelslog.brewnote.bean.entity.relation.BeanCupNoteRelation;
 
 import jakarta.persistence.Column;
@@ -16,10 +17,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "bean")
 @Getter
+@Setter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class Bean {
     @Id
@@ -70,5 +73,50 @@ public class Bean {
             throw new IllegalArgumentException("beanName must not be blank");
         }
         this.beanName = beanName;
+    }
+
+    public void apply(BeanUpdateCommand command) {
+        if (command.beanName() != null && !command.beanName().isBlank()) {
+            this.beanName = command.beanName();
+        }
+        if (command.beanImageUrl() != null) {
+            this.beanImageUrl = command.beanImageUrl();
+        }
+        if (command.purchaseUrl() != null) {
+            this.purchaseUrl = command.purchaseUrl();
+        }
+        if (command.roastery() != null) {
+            this.roastery = command.roastery();
+        }
+        if (command.country() != null) {
+            this.country = command.country();
+        }
+        if (command.region() != null) {
+            this.region = command.region();
+        }
+        if (command.farm() != null) {
+            this.farm = command.farm();
+        }
+        if (command.producer() != null) {
+            this.producer = command.producer();
+        }
+        if (command.variety() != null) {
+            this.variety = command.variety();
+        }
+        if (command.altitude() != null) {
+            this.altitude = command.altitude();
+        }
+        if (command.process() != null) {
+            this.process = command.process();
+        }
+        if (command.roastingPoint() != null) {
+            this.roastingPoint = command.roastingPoint();
+        }
+        if (command.roastingDate() != null) {
+            this.roastingDate = command.roastingDate();
+        }
+        if (command.price() != null) {
+            this.price = command.price();
+        }
     }
 }

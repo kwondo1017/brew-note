@@ -3,6 +3,7 @@ package org.travelslog.brewnote.bean.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.travelslog.brewnote.bean.entity.command.BeanTastingLogUpdateCommand;
 import org.travelslog.brewnote.bean.entity.relation.BeanTastingLogCupNoteRelation;
 
 import jakarta.persistence.Column;
@@ -46,9 +47,29 @@ public class BeanTastingLog {
     private java.util.List<BeanTastingLogCupNoteRelation> beanTastingLogCupNoteRelation = new ArrayList<>();
 
     public BeanTastingLog(LocalDate tastingDate, String tastingNote) {
-        if (tastingDate != null && tastingNote != null) {
-            this.tastingDate = tastingDate;
-            this.tastingNote = tastingNote;  
+        if (tastingDate == null) {
+            throw new IllegalArgumentException("tastingDate must not be null");
+        }
+        if (tastingNote == null || tastingNote.isBlank()) {
+            throw new IllegalArgumentException("tastingNote must not be blank");
+        }
+        this.tastingDate = tastingDate;
+        this.tastingNote = tastingNote;
+    }
+
+    public void apply(BeanTastingLogUpdateCommand command) {
+        if (command.beanId() != null) {
+            this.bean = new Bean();
+            this.bean.setId(command.beanId());
+        }
+        if (command.tastingDate() != null) {
+            this.tastingDate = command.tastingDate();
+        }
+        if (command.beanScore() != null) {
+            this.beanScore = command.beanScore();
+        }
+        if (command.tastingNote() != null && !command.tastingNote().isBlank()) {
+            this.tastingNote = command.tastingNote();
         }
     }
 }
