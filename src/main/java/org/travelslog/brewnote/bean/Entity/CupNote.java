@@ -25,5 +25,5 @@ public class CupNote {
     private String tagName; // NOT NULL
 
     @OneToMany(mappedBy = "cupNoteId")
-    private java.util.List<BeanCupNote> beanCupNotes;
+    private java.util.List<BeanCupNoteRelation> beanCupNotes;
 }

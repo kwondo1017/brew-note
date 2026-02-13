@@ -39,5 +39,5 @@ public class BeanTastingLog {
     private String tastingNote; // NOT NULL
 
     @OneToMany(mappedBy = "beanTastingLog")
-    private java.util.List<BeanTastingLogCupNote> beanTastingLogCupNotes = new ArrayList<>();
+    private java.util.List<BeanTastingLogCupNoteRelation> beanTastingLogCupNotes = new ArrayList<>();
 }

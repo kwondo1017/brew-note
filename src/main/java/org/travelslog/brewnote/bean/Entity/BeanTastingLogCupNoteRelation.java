@@ -11,8 +11,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name = "bean_tasting_log_cup_notes")
-public class BeanTastingLogCupNote {
+@Table (name = "bean_tasting_log_cup_note_relation")
+public class BeanTastingLogCupNoteRelation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)

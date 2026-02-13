@@ -11,22 +11,20 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name = "bean_cup_notes")
-public class BeanCupNote {
+@Table (name = "bean_cup_note_relation")
+public class BeanCupNoteRelation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
-    @Column(nullable = false)
-    private Long beanId; // NOT NULL
-    @Column(nullable = false)
-    private Long cupNoteId; // NOT NULL
-    @Column(nullable = false)
-    private CupNoteType cupNoteType; // NOT NULL
 
     @ManyToOne
+    @Column(name = "bean_id", nullable = false)
     private Bean bean; // NOT NULL
 
     @ManyToOne
+    @Column(name = "cup_note_id", nullable = false)
     private CupNote cupNote; // NOT NULL
+
+    @Column(name = "type", nullable = false)
+    private CupNoteType type; // NOT NULL
 }
