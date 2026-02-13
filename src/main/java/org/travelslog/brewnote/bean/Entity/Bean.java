@@ -76,7 +76,10 @@ public class Bean {
     }
 
     public void apply(BeanUpdateCommand command) {
-        if (command.beanName() != null && !command.beanName().isBlank()) {
+        if (command.beanName() != null) {
+            if (command.beanName().isBlank()) {
+                throw new IllegalArgumentException("beanName must not be blank");
+            }
             this.beanName = command.beanName();
         }
         if (command.beanImageUrl() != null) {
@@ -110,12 +113,18 @@ public class Bean {
             this.process = command.process();
         }
         if (command.roastingPoint() != null) {
+            if (roastingPoint < 0 || roastingPoint >100) {
+                throw new IllegalArgumentException("roastingPoint must be between 0 and 100");
+            }
             this.roastingPoint = command.roastingPoint();
         }
         if (command.roastingDate() != null) {
             this.roastingDate = command.roastingDate();
         }
         if (command.price() != null) {
+            if (command.price() < 0) {
+                throw new IllegalArgumentException("price must be non-negative");
+            }
             this.price = command.price();
         }
     }
