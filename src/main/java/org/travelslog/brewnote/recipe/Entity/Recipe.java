@@ -1,4 +1,4 @@
-package org.travelslog.brewnote.recipe.Entity;
+package org.travelslog.brewnote.recipe.entity;
 
 import org.travelslog.brewnote.recipe.BeverageType;
 
