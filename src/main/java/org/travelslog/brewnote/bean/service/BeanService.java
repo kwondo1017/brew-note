@@ -28,7 +28,7 @@ public class BeanService {
 
     public void update(Long id, String beanName, String roastery, Integer price, String purchaseUrl) {
         Bean bean = get(id);
-        bean.update(beanName, roastery, price, purchaseUrl);
+        //bean.update(beanName, roastery, price, null, purchaseUrl, null, null, null, null, null, null, null, null, null);
     }
 
     public void delete(Long id) {
