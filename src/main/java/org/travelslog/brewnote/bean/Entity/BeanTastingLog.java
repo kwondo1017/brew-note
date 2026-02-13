@@ -45,33 +45,10 @@ public class BeanTastingLog {
     @OneToMany(mappedBy = "beanTastingLog")
     private java.util.List<BeanTastingLogCupNoteRelation> beanTastingLogCupNoteRelation = new ArrayList<>();
 
-    // BeanTastingLog 객체 기본 메소드
-    private static void requireNotBlank(String value, String msg) {
-        if (value == null || value.isBlank()) 
-            throw new IllegalArgumentException(msg);
-    }
-
     public BeanTastingLog(LocalDate tastingDate, String tastingNote) {
-        requireNotBlank(tastingNote, "tastingNote must not be blank");
-        this.tastingDate = tastingDate;
-        this.tastingNote = tastingNote;
-    }
-
-    public void update(Bean bean, LocalDate tastingDate,Integer beanScore,  String tastingNote) {
-        if (bean != null) {
-            this.bean = bean;
-        }
-        if (tastingDate != null) {
+        if (tastingDate != null && tastingNote != null) {
             this.tastingDate = tastingDate;
-        }
-        if (beanScore != null) {
-            if (beanScore < 0 || beanScore > 100) 
-                throw new IllegalArgumentException("beanScore must be between 0 and 100");
-            this.beanScore = beanScore;
-        }
-        if (tastingNote != null) {
-            requireNotBlank(tastingNote, "tastingNote must not be blank");
-            this.tastingNote = tastingNote;
+            this.tastingNote = tastingNote;  
         }
     }
 }
