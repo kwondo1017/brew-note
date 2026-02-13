@@ -87,7 +87,7 @@ public class Bean {
         this.beanName = beanName;
     }
 
-    public void update(String beanName, String roastery, Integer price, String purchaseUrl) {
+    public void update(String beanName, String roastery, Integer price, String beanImageUrl, String purchaseUrl, String country, String region, String farm, String producer, String variety, Integer altitude, String process, Integer roastingPoint, LocalDate roastingDate) {
         if (beanName != null) {
             requireNotBlank(beanName, "beanName must not be blank");
             this.beanName = beanName;
@@ -100,9 +100,48 @@ public class Bean {
             if (price < 0) throw new IllegalArgumentException("price must not be negative");
             this.price = price;
         }
+        if (beanImageUrl != null) {
+            requireNotBlank(beanImageUrl, "beanImageUrl must not be blank");
+            this.beanImageUrl = beanImageUrl;
+        }
         if (purchaseUrl != null) {
             requireNotBlank(purchaseUrl, "purchaseUrl must not be blank");
             this.purchaseUrl = purchaseUrl;
+        }
+        if (country != null) {
+            requireNotBlank(country, "country must not be blank");
+            this.country = country;
+        }
+        if (region != null) {
+            requireNotBlank(region, "region must not be blank");
+            this.region = region;
+        }
+        if (farm != null) {
+            requireNotBlank(farm, "farm must not be blank");
+            this.farm = farm;
+        }
+        if (producer != null) {
+            requireNotBlank(producer, "producer must not be blank");
+            this.producer = producer;
+        }
+        if (variety != null) {
+            requireNotBlank(variety, "variety must not be blank");
+            this.variety = variety;
+        }
+        if (altitude != null) {
+            if (altitude < 0) throw new IllegalArgumentException("altitude must not be negative");
+            this.altitude = altitude;
+        }
+        if (process != null) {
+            requireNotBlank(process, "process must not be blank");
+            this.process = process;
+        }
+        if (roastingPoint != null) {
+            if (roastingPoint < 0) throw new IllegalArgumentException("roastingPoint must not be negative");
+            this.roastingPoint = roastingPoint;
+        }
+        if (roastingDate != null) {
+            this.roastingDate = roastingDate;
         }
     }
 
@@ -111,13 +150,6 @@ public class Bean {
         this.beanTastingLog.add(beanTastingLog);
         if (beanTastingLog.getBean() != this) {
             beanTastingLog.setBean(this);
-        }
-    }
-
-    public void addBeanCupNoteRelation(BeanCupNoteRelation beanCupNoteRelation) {
-        this.beanCupNoteRelation.add(beanCupNoteRelation);
-        if (beanCupNoteRelation.getBean() != this) {
-            beanCupNoteRelation.setBean(this);
         }
     }
 }
