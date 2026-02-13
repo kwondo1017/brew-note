@@ -1,7 +1,9 @@
-package org.travelslog.brewnote.bean.Entity;
+package org.travelslog.brewnote.bean.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import org.travelslog.brewnote.bean.entity.relation.BeanTastingLogCupNoteRelation;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,5 +41,5 @@ public class BeanTastingLog {
     private String tastingNote; // NOT NULL
 
     @OneToMany(mappedBy = "beanTastingLog")
-    private java.util.List<BeanTastingLogCupNoteRelation> beanTastingLogCupNotes = new ArrayList<>();
+    private java.util.List<BeanTastingLogCupNoteRelation> beanTastingLogCupNoteRelation = new ArrayList<>();
 }

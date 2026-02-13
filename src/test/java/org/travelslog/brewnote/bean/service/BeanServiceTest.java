@@ -1,7 +1,5 @@
 package org.travelslog.brewnote.bean.service;
 
-import org.travelslog.brewnote.bean.Entity.Bean;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +8,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.travelslog.brewnote.bean.entity.Bean;
 
 import static org.assertj.core.api.Assertions.*;
 

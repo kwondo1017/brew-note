@@ -1,6 +1,8 @@
-package org.travelslog.brewnote.bean.Entity;
+package org.travelslog.brewnote.bean.entity.relation;
 
-import org.travelslog.brewnote.bean.types.CupNoteType;
+import org.travelslog.brewnote.bean.entity.BeanTastingLog;
+import org.travelslog.brewnote.cupnote.entity.CupNote;
+import org.travelslog.brewnote.cupnote.entity.CupNoteType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,8 +11,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 @Table (name = "bean_tasting_log_cup_note_relation")
 public class BeanTastingLogCupNoteRelation {
     @Id

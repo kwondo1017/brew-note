@@ -1,7 +1,9 @@
-package org.travelslog.brewnote.bean.Entity;
+package org.travelslog.brewnote.bean.entity;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+
+import org.travelslog.brewnote.bean.entity.relation.BeanCupNoteRelation;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -70,6 +72,11 @@ public class Bean {
     @OneToMany(mappedBy = "bean")
     private java.util.List<BeanTastingLog> beanTastingLog = new java.util.ArrayList<>();
 
+    @OneToMany(mappedBy = "bean")
+    private java.util.List<BeanCupNoteRelation> beanCupNoteRelation = new java.util.ArrayList<>();
+
+
+    // Bean 객체 기본 메소드
     private static void requireNotBlank(String value, String msg) {
         if (value == null || value.isBlank()) 
             throw new IllegalArgumentException(msg);
@@ -98,4 +105,6 @@ public class Bean {
             this.purchaseUrl = purchaseUrl;
         }
     }
+
+    // Bean 객체의 연관 관계 메소드
 }

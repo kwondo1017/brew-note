@@ -2,7 +2,7 @@ package org.travelslog.brewnote.bean.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.travelslog.brewnote.bean.Entity.Bean;
+import org.travelslog.brewnote.bean.entity.Bean;
 import org.travelslog.brewnote.bean.repository.BeanRepository;
 
 import lombok.RequiredArgsConstructor;

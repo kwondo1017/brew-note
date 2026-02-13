@@ -1,4 +1,6 @@
-package org.travelslog.brewnote.bean.Entity;
+package org.travelslog.brewnote.cupnote.entity;
+
+import org.travelslog.brewnote.bean.entity.relation.BeanCupNoteRelation;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
