@@ -15,20 +15,16 @@ import jakarta.persistence.Table;
 public class BeanTastingLogCupNoteRelation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
-    @Column(nullable = false)
-    private Long beanTastingLogId; // NOT NULL
-    @Column(nullable = false)
-    private Long cupNoteId; // NOT NULL
-    @Column(nullable = false)
-    private CupNoteType cupNoteType; // NOT NULL
 
-    @Column(nullable = false)
     @ManyToOne
+    @Column(name = "bean_tasting_log_id", nullable = false)
     private BeanTastingLog beanTastingLog; // NOT NULL
 
-    @Column(nullable = false)
     @ManyToOne
+    @Column(name = "cup_note_id", nullable = false)
     private CupNote cupNote; // NOT NULL
+
+    @Column(name = "type", nullable = false)
+    private CupNoteType type; // NOT NULL
 }
