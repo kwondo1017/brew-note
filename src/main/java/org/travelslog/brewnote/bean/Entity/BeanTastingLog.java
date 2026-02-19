@@ -46,22 +46,22 @@ public class BeanTastingLog {
     @OneToMany(mappedBy = "beanTastingLog")
     private java.util.List<BeanTastingLogCupNoteRelation> beanTastingLogCupNoteRelation = new ArrayList<>();
 
-    public BeanTastingLog(LocalDate tastingDate, String tastingNote) {
+    public BeanTastingLog(Bean bean, LocalDate tastingDate, String tastingNote) {
+        if (bean == null) {
+            throw new IllegalArgumentException("bean must not be null");
+        }
         if (tastingDate == null) {
             throw new IllegalArgumentException("tastingDate must not be null");
         }
         if (tastingNote == null || tastingNote.isBlank()) {
             throw new IllegalArgumentException("tastingNote must not be blank");
         }
+        this.bean = bean;
         this.tastingDate = tastingDate;
         this.tastingNote = tastingNote;
     }
 
     public void apply(BeanTastingLogUpdateCommand command) {
-        if (command.beanId() != null) {
-            this.bean = new Bean();
-            this.bean.setId(command.beanId());
-        }
         if (command.tastingDate() != null) {
             this.tastingDate = command.tastingDate();
         }
