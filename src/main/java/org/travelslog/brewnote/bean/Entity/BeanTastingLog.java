@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.travelslog.brewnote.bean.entity.command.BeanTastingLogUpdateCommand;
 import org.travelslog.brewnote.bean.entity.relation.BeanTastingLogCupNoteRelation;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -43,7 +44,11 @@ public class BeanTastingLog {
     @Column(name = "tasting_note", nullable = false)
     private String tastingNote; // NOT NULL
 
-    @OneToMany(mappedBy = "beanTastingLog")
+    @OneToMany(
+        mappedBy = "beanTastingLog",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
     private java.util.List<BeanTastingLogCupNoteRelation> beanTastingLogCupNoteRelation = new ArrayList<>();
 
     public BeanTastingLog(Bean bean, LocalDate tastingDate, String tastingNote) {
