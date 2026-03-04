@@ -66,6 +66,9 @@ public class BeanTastingLog {
             this.tastingDate = command.tastingDate();
         }
         if (command.beanScore() != null) {
+            if (command.beanScore() > 100 || command.beanScore() < 0) {
+                throw new IllegalArgumentException("beanScore must be between 0 and 100");
+            }
             this.beanScore = command.beanScore();
         }
         if (command.tastingNote() != null && !command.tastingNote().isBlank()) {
