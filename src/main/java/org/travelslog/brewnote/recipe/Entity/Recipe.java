@@ -1,6 +1,5 @@
 package org.travelslog.brewnote.recipe.entity;
 
-import org.checkerframework.checker.units.qual.C;
 import org.travelslog.brewnote.recipe.BeverageType;
 
 import jakarta.persistence.Column;
