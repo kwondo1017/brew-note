@@ -17,13 +17,13 @@ public class PouringStep {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false)
+    @Column(name = "recipe_id", nullable = false)
     private Long recipeId; // NOT NULL
-    @Column(nullable = false)
+    @Column(name = "step_name", nullable = false)
     private String stepName; // NOT NULL
-    @Column(nullable = false)
+    @Column(name = "step_note", nullable = false)
     private String stepNote; // NOT NULL
-    @Column(nullable = false)
+    @Column(name = "step_time", nullable = false)
     private String stepTime; // NOT NULL
 
     @ManyToOne
