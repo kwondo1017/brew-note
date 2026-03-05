@@ -7,14 +7,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
 
 @Entity
-@Table(name = "pouring_steps")
+@Getter
+@Table(name = "pouring_step")
 public class PouringStep {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
+    
     @Column(nullable = false)
     private Long recipeId; // NOT NULL
     @Column(nullable = false)
