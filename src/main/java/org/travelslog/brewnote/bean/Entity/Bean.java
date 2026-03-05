@@ -17,12 +17,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "bean")
 @Getter
-@Setter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class Bean {
     @Id
@@ -62,10 +60,18 @@ public class Bean {
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime updatedAt;
 
-    @OneToMany(mappedBy = "bean")
+    @OneToMany(
+        mappedBy = "bean",
+        cascade = jakarta.persistence.CascadeType.ALL,
+        orphanRemoval = true
+    )
     private java.util.List<BeanTastingLog> beanTastingLog = new java.util.ArrayList<>();
 
-    @OneToMany(mappedBy = "bean")
+    @OneToMany(
+        mappedBy = "bean",
+        cascade = jakarta.persistence.CascadeType.ALL,
+        orphanRemoval = true
+    )
     private java.util.List<BeanCupNoteRelation> beanCupNoteRelation = new java.util.ArrayList<>();
 
     public Bean(String beanName) {
