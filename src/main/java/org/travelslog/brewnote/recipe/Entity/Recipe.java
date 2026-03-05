@@ -15,14 +15,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
-@Table(name = "recipes")
+@Table(name = "recipe")
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
+
     @Column(nullable = false)
     private String recipeName; // NOT NULL
+
     private BeverageType beverageType; // Hot, Iced
     private String dripper;
     private String filter;
