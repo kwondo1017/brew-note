@@ -17,12 +17,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "bean")
 @Getter
-@Setter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class Bean {
     @Id
