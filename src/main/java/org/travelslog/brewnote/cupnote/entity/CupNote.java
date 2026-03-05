@@ -24,6 +24,10 @@ public class CupNote {
     @Column(name = "tag_name", nullable = false)
     private String tagName; // NOT NULL
 
-    @OneToMany(mappedBy = "cupNote")
+    @OneToMany(
+        mappedBy = "cupNote",
+        cascade = jakarta.persistence.CascadeType.ALL,
+        orphanRemoval = true
+    )
     private java.util.List<BeanCupNoteRelation> beanCupNoteRelation = new java.util.ArrayList<>();
 }
