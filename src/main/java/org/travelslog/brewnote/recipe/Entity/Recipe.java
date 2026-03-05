@@ -46,6 +46,10 @@ public class Recipe {
     @Column(name = "recipe_url")
     private String recipeUrl; // 추출 레시피 URL
 
-    @OneToMany(mappedBy = "recipeId")
+    @OneToMany(
+        mappedBy = "recipeId",
+        cascade = jakarta.persistence.CascadeType.ALL,
+        orphanRemoval = true
+    )
     private java.util.List<PouringStep> pouringSteps;
 }
