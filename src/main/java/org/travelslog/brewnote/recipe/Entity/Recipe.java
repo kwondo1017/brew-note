@@ -1,9 +1,12 @@
 package org.travelslog.brewnote.recipe.entity;
 
+import java.math.BigDecimal;
+
 import org.travelslog.brewnote.recipe.BeverageType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,6 +27,7 @@ public class Recipe {
     @Column(name = "recipe_name", nullable = false)
     private String recipeName; // NOT NULL
 
+    @Enumerated(jakarta.persistence.EnumType.STRING)
     @Column(name = "beverage_type")
     private BeverageType beverageType; // Hot, Iced
 
@@ -36,19 +40,19 @@ public class Recipe {
 
     @Column(name = "recommend_roasting_point")
     private String recommendRoastingPoint; // 추천 로스팅 포인트
-    @Column(name = "coffee_amount")
-    private int coffeeAmount; // 원두량 (g)
-    @Column(name = "water_amount")
-    private int waterAmount; // 물량 (ml)
+    @Column(name = "bean_weight", precision = 6, scale = 2)
+    private BigDecimal beanWeight; // 원두량 (g)
+    @Column(name = "water_weight", precision = 6, scale = 2)
+    private BigDecimal waterWeight; // 물량 (ml)
     @Column(name = "water_temperature")
     private int waterTemperature; // 물 온도 (°C)
     @Column(name = "recipe_url")
     private String recipeUrl; // 추출 레시피 URL
 
     @OneToMany(
-        mappedBy = "recipeId",
+        mappedBy = "recipe",
         cascade = jakarta.persistence.CascadeType.ALL,
         orphanRemoval = true
     )
-    private java.util.List<PouringStep> pouringSteps;
+    private java.util.List<PouringStep> pouringStep = new java.util.ArrayList<>();
 }
