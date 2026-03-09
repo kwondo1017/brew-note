@@ -20,17 +20,17 @@ public class PouringStep {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "recipe_id", nullable = false)
-    private Long recipeId; // NOT NULL
+    @ManyToOne(fetch = jakarta.persistence.FetchType.LAZY, optional = false)
+    @JoinColumn(name = "recipe_id", nullable = false)
+    private Recipe recipe; // NOT NULL
+
     @Column(name = "step_name", nullable = false)
     private String stepName; // NOT NULL
     @Column(name = "step_note", nullable = false)
     private String stepNote; // NOT NULL
     @Column(name = "step_time", nullable = false)
     private String stepTime; // NOT NULL
-
-    @ManyToOne
-    @JoinColumn(name = "recipe_id", insertable = false, updatable = false)
-    private Recipe recipe; // NOT NULL
+    @Column(name = "step_order_index", nullable = false)
+    private int stepOrderIndex; // NOT NULL
 }
 
