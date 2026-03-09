@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,8 +29,8 @@ public class Recipe {
     private String recipeName; // NOT NULL
 
     @Enumerated(jakarta.persistence.EnumType.STRING)
-    @Column(name = "beverage_type")
-    private BeverageType beverageType; // Hot, Iced
+    @Column(name = "beverage_type", nullable = false)
+    private BeverageType beverageType;
 
     private String dripper;
     private String filter;
@@ -54,5 +55,6 @@ public class Recipe {
         cascade = jakarta.persistence.CascadeType.ALL,
         orphanRemoval = true
     )
+    @OrderBy("stepOrderIndex ASC") // stepOrderIndex 기준으로 오름차순 정렬
     private java.util.List<PouringStep> pouringStep = new java.util.ArrayList<>();
 }
