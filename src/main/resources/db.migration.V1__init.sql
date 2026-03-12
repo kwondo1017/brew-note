@@ -60,12 +60,12 @@ CREATE TABLE bean_cup_note_relation (
 
 CREATE INDEX idx_bean_rel_bean_id ON bean_cup_note_relation(bean_id);
 
-CREATE TYPE beverage_type AS ENUM ('HOT', 'ICED');
+beverage_type VARCHAR(20) NOT NULL CHECK (beverage_type IN ('HOT', 'ICED'));
 
 CREATE TABLE recipe (
   id BIGSERIAL PRIMARY KEY,
   recipe_name VARCHAR(255) NOT NULL,
-  beverage_type beverage_type NOT NULL,
+  beverage_type VARCHAR(20) NOT NULL CHECK (beverage_type IN ('HOT', 'ICED')),
   dripper VARCHAR(100),
   filter VARCHAR(100),
   grinder VARCHAR(100),
