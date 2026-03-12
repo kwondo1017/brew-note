@@ -70,7 +70,10 @@ public class Recipe {
     }
 
     public void apply(RecipeUpdateCommand command) {
-        if (command.recipeName() != null && !command.recipeName().isBlank()) {
+        if (command.recipeName() != null) {
+            if (command.recipeName().isBlank()) {
+                throw new IllegalArgumentException("recipeName must not be blank");
+            }
             this.recipeName = command.recipeName();
         }
         if (command.beverageType() != null) {
@@ -86,18 +89,30 @@ public class Recipe {
             this.grinder = command.grinder();
         }
         if (command.grindSetting() != null) {
+            if (command.grindSetting() < 0) {
+                throw new IllegalArgumentException("grindSetting must be a non-negative integer");
+            }
             this.grindSetting = command.grindSetting();
         }
         if (command.recommendRoastingPoint() != null) {
             this.recommendRoastingPoint = command.recommendRoastingPoint();
         }
         if (command.beanWeight() != null) {
+            if (command.beanWeight().compareTo(BigDecimal.ZERO) < 0) {
+                throw new IllegalArgumentException("beanWeight must be a non-negative number");
+            }
             this.beanWeight = command.beanWeight();
         }
         if (command.waterWeight() != null) {
+            if (command.waterWeight().compareTo(BigDecimal.ZERO) < 0) {
+                throw new IllegalArgumentException("waterWeight must be a non-negative number");
+            }
             this.waterWeight = command.waterWeight();
         }
         if (command.waterTemperature() != null) {
+            if (command.waterTemperature() < 0) {
+                throw new IllegalArgumentException("waterTemperature must be a non-negative integer");
+            }
             this.waterTemperature = command.waterTemperature();
         }
         if (command.recipeUrl() != null) {
