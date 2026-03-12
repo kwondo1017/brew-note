@@ -37,7 +37,7 @@ public class Recipe {
     private String grinder;
 
     @Column(name = "grind_setting")
-    private int grindSetting; // 분쇄도
+    private Integer grindSetting; // 분쇄도
 
     @Column(name = "recommend_roasting_point")
     private String recommendRoastingPoint; // 추천 로스팅 포인트
@@ -46,7 +46,7 @@ public class Recipe {
     @Column(name = "water_weight", precision = 6, scale = 2)
     private BigDecimal waterWeight; // 물량 (ml)
     @Column(name = "water_temperature")
-    private int waterTemperature; // 물 온도 (°C)
+    private Integer waterTemperature; // 물 온도 (°C)
     @Column(name = "recipe_url")
     private String recipeUrl; // 추출 레시피 URL
 
@@ -56,5 +56,5 @@ public class Recipe {
         orphanRemoval = true
     )
     @OrderBy("stepOrderIndex ASC") // stepOrderIndex 기준으로 오름차순 정렬
-    private java.util.List<PouringStep> pouringStep = new java.util.ArrayList<>();
+    private java.util.List<PouringStep> pouringSteps = new java.util.ArrayList<>();
 }
