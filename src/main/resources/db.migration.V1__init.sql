@@ -80,9 +80,9 @@ CREATE TABLE recipe (
 CREATE TABLE pouring_step (
   id BIGSERIAL PRIMARY KEY,
   recipe_id BIGINT NOT NULL REFERENCES recipe(id) ON DELETE CASCADE,
-  step_name NOT NULL VARCHAR(100),
-  step_note NOT NULL VARCHAR(255),
-  step_time NOT NULL VARCHAR(30),
+  step_name VARCHAR(100) NOT NULL,
+  step_note VARCHAR(255) NOT NULL,
+  step_time VARCHAR(30) NOT NULL,
   step_order_index INTEGER NOT NULL,
   UNIQUE (recipe_id, step_order_index)
 );
