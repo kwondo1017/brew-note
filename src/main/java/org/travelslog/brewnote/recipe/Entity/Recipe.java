@@ -2,7 +2,7 @@ package org.travelslog.brewnote.recipe.entity;
 
 import java.math.BigDecimal;
 
-import org.travelslog.brewnote.recipe.BeverageType;
+import org.travelslog.brewnote.recipe.entity.command.RecipeUpdateCommand;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -57,4 +57,51 @@ public class Recipe {
     )
     @OrderBy("stepOrderIndex ASC") // stepOrderIndex 기준으로 오름차순 정렬
     private java.util.List<PouringStep> pouringSteps = new java.util.ArrayList<>();
+
+    public Recipe(String recipeName, BeverageType beverageType) {
+        if (recipeName == null || recipeName.isBlank()) {
+            throw new IllegalArgumentException("recipeName must not be blank");
+        }
+        if (beverageType == null) {
+            throw new IllegalArgumentException("beverageType must not be null");
+        }
+        this.recipeName = recipeName;
+        this.beverageType = beverageType;
+    }
+
+    public void apply(RecipeUpdateCommand command) {
+        if (command.recipeName() != null && !command.recipeName().isBlank()) {
+            this.recipeName = command.recipeName();
+        }
+        if (command.beverageType() != null) {
+            this.beverageType = command.beverageType();
+        }
+        if (command.dripper() != null) {
+            this.dripper = command.dripper();
+        }
+        if (command.filter() != null) {
+            this.filter = command.filter();
+        }
+        if (command.grinder() != null) {
+            this.grinder = command.grinder();
+        }
+        if (command.grindSetting() != null) {
+            this.grindSetting = command.grindSetting();
+        }
+        if (command.recommendRoastingPoint() != null) {
+            this.recommendRoastingPoint = command.recommendRoastingPoint();
+        }
+        if (command.beanWeight() != null) {
+            this.beanWeight = command.beanWeight();
+        }
+        if (command.waterWeight() != null) {
+            this.waterWeight = command.waterWeight();
+        }
+        if (command.waterTemperature() != null) {
+            this.waterTemperature = command.waterTemperature();
+        }
+        if (command.recipeUrl() != null) {
+            this.recipeUrl = command.recipeUrl();
+        }
+    }
 }
