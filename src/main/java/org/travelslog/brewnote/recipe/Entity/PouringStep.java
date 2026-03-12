@@ -59,16 +59,28 @@ public class PouringStep {
     }
 
     public void apply(PouringStepUpdateCommand command) {
-        if (command.stepName() != null && !command.stepName().isBlank()) {
+        if (command.stepName() != null) {
+            if (command.stepName().isBlank()) {
+                throw new IllegalArgumentException("stepName must not be blank");
+            }
             this.stepName = command.stepName();
         }
-        if (command.stepNote() != null && !command.stepNote().isBlank()) {
+        if (command.stepNote() != null) {
+            if (command.stepNote().isBlank()) {
+                throw new IllegalArgumentException("stepNote must not be blank");
+            }
             this.stepNote = command.stepNote();
         }
-        if (command.stepTime() != null && !command.stepTime().isBlank()) {
+        if (command.stepTime() != null) {
+            if (command.stepTime().isBlank()) {
+                throw new IllegalArgumentException("stepTime must not be blank");
+            }
             this.stepTime = command.stepTime();
         }
-        if (command.stepOrderIndex() >= 0) {
+        if (command.stepOrderIndex() != null) {
+            if (command.stepOrderIndex() < 0) {
+                throw new IllegalArgumentException("stepOrderIndex must be a non-negative integer");
+            }
             this.stepOrderIndex = command.stepOrderIndex();
         }
     }
