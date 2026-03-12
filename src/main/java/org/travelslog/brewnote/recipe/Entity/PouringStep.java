@@ -33,9 +33,9 @@ public class PouringStep {
     @Column(name = "step_time", nullable = false)
     private String stepTime; // NOT NULL
     @Column(name = "step_order_index", nullable = false)
-    private int stepOrderIndex; // NOT NULL
+    private Integer stepOrderIndex; // NOT NULL
 
-    public PouringStep(Recipe recipe, String stepName, String stepNote, String stepTime, int stepOrderIndex) {
+    public PouringStep(Recipe recipe, String stepName, String stepNote, String stepTime, Integer stepOrderIndex) {
         if (recipe == null) {
             throw new IllegalArgumentException("recipe must not be null");
         }
@@ -48,8 +48,8 @@ public class PouringStep {
         if (stepTime == null || stepTime.isBlank()) {
             throw new IllegalArgumentException("stepTime must not be blank");
         }
-        if (stepOrderIndex < 0) {
-            throw new IllegalArgumentException("stepOrderIndex must be non-negative");
+        if (stepOrderIndex == null || stepOrderIndex < 0) {
+            throw new IllegalArgumentException("stepOrderIndex must be a non-negative integer");
         }
         this.recipe = recipe;
         this.stepName = stepName;
