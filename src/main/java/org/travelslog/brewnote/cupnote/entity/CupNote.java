@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 @Table(name = "cup_note")
 public class CupNote {
     @Id
