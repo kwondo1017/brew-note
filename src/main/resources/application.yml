@@ -18,4 +18,5 @@ spring:
 
 logging:
   level:
-    org.flywaydb: debug
+    org.flywaydb: DEBUG
+    org.springframework.boot.autoconfigure.flyway: DEBUG
