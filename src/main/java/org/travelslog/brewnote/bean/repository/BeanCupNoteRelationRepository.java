@@ -1,7 +1,7 @@
 package org.travelslog.brewnote.bean.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.travelslog.brewnote.bean.entity.Bean;
+import org.travelslog.brewnote.bean.entity.relation.BeanCupNoteRelation;
 
-public interface BeanCupNoteRelationRepository extends JpaRepository<Bean, Long> {
+public interface BeanCupNoteRelationRepository extends JpaRepository<BeanCupNoteRelation, Long> {
 }
