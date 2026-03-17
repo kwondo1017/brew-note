@@ -6,6 +6,7 @@ import org.travelslog.brewnote.recipe.entity.command.RecipeUpdateCommand;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +29,7 @@ public class Recipe {
     @Column(name = "recipe_name", nullable = false)
     private String recipeName; // NOT NULL
 
-    @Enumerated(jakarta.persistence.EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(name = "beverage_type", nullable = false)
     private BeverageType beverageType;
 
