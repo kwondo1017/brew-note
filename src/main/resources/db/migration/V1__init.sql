@@ -29,7 +29,7 @@ CREATE TABLE bean_tasting_log (
   id BIGSERIAL PRIMARY KEY,
   bean_id BIGINT NOT NULL REFERENCES bean(id) ON DELETE CASCADE,
   tasting_date DATE NOT NULL DEFAULT CURRENT_DATE,
-  bean_score SMALLINT CHECK (bean_score BETWEEN 0 AND 100),
+  bean_score INTEGER CHECK (bean_score BETWEEN 0 AND 100),
   tasting_note TEXT NOT NULL
 );
 
@@ -69,7 +69,7 @@ CREATE TABLE recipe (
   grinder VARCHAR(100),
   grind_setting INTEGER,
   recommend_roasting_point VARCHAR(50),
-  water_temperature SMALLINT CHECK (water_temperature BETWEEN 0 AND 110),
+  water_temperature INTEGER CHECK (water_temperature BETWEEN 0 AND 110),
   bean_weight NUMERIC(6,2),
   water_weight NUMERIC(6,2),
   recipe_url TEXT
