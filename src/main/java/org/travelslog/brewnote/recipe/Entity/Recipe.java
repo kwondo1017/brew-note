@@ -34,7 +34,8 @@ public class Recipe {
     private BeverageType beverageType;
 
     private String dripper;
-    private String filter;
+    @Column(name = "filter_name")
+    private String filterName;
     private String grinder;
 
     @Column(name = "grind_setting")
@@ -83,8 +84,8 @@ public class Recipe {
         if (command.dripper() != null) {
             this.dripper = command.dripper();
         }
-        if (command.filter() != null) {
-            this.filter = command.filter();
+        if (command.filterName() != null) {
+            this.filterName = command.filterName();
         }
         if (command.grinder() != null) {
             this.grinder = command.grinder();

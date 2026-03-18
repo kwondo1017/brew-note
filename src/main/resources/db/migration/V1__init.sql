@@ -65,7 +65,7 @@ CREATE TABLE recipe (
   recipe_name VARCHAR(255) NOT NULL,
   beverage_type VARCHAR(20) NOT NULL CHECK (beverage_type IN ('HOT', 'ICED')),
   dripper VARCHAR(100),
-  filter VARCHAR(100),
+  filter_name VARCHAR(100),
   grinder VARCHAR(100),
   grind_setting INTEGER,
   recommend_roasting_point VARCHAR(50),

@@ -8,7 +8,7 @@ public record RecipeUpdateCommand(
     String recipeName,
     BeverageType beverageType,
     String dripper,
-    String filter,
+    String filterName,
     String grinder,
     Integer grindSetting,
     String recommendRoastingPoint,
