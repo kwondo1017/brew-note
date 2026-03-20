@@ -119,7 +119,7 @@ public class Bean {
             this.process = command.process();
         }
         if (command.roastingPoint() != null) {
-            if (roastingPoint < 0 || roastingPoint >100) {
+            if (command.roastingPoint() < 0 || command.roastingPoint() >100) {
                 throw new IllegalArgumentException("roastingPoint must be between 0 and 100");
             }
             this.roastingPoint = command.roastingPoint();
