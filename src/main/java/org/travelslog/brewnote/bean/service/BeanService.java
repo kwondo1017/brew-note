@@ -1,8 +1,11 @@
 package org.travelslog.brewnote.bean.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.travelslog.brewnote.bean.entity.Bean;
+import org.travelslog.brewnote.bean.entity.command.BeanCreateCommand;
 import org.travelslog.brewnote.bean.entity.command.BeanUpdateCommand;
 import org.travelslog.brewnote.bean.repository.BeanRepository;
 
@@ -16,7 +19,7 @@ public class BeanService {
     private final BeanRepository beanRepository;
 
     @Transactional
-    public Long createBean(BeanUpdateCommand command) {
+    public Long createBean(BeanCreateCommand command) {
         Bean bean = new Bean(command.beanName());
         return beanRepository.save(bean).getId();
     }
@@ -28,7 +31,7 @@ public class BeanService {
     }
 
     @Transactional(readOnly = true)
-    public Iterable<Bean> getBeans() {
+    public List<Bean> getBeans() {
         return beanRepository.findAll();
     }
 
