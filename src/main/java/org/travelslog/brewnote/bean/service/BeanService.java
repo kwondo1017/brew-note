@@ -42,4 +42,4 @@ public class BeanService {
     public void deleteBean(Long id) {
         beanRepository.deleteById(id);
     }
-}   
+}
