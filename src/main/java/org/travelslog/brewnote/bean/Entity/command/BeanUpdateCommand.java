@@ -1,5 +1,8 @@
 package org.travelslog.brewnote.bean.entity.command;
 
+import lombok.Builder;
+
+@Builder
 public record BeanUpdateCommand(
     String beanName,
     String roastery,
