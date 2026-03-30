@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.travelslog.brewnote.bean.entity.command.BeanUpdateCommand;
 import org.travelslog.brewnote.bean.entity.relation.BeanCupNoteRelation;
+import org.travelslog.brewnote.bean.exception.BeanValidationException;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -76,7 +77,7 @@ public class Bean {
 
     public Bean(String beanName) {
         if (beanName == null || beanName.isBlank()) {
-            throw new IllegalArgumentException("beanName must not be blank");
+            throw new BeanValidationException("beanName must not be blank");
         }
         this.beanName = beanName;
     }
@@ -84,7 +85,7 @@ public class Bean {
     public void apply(BeanUpdateCommand command) {
         if (command.beanName() != null) {
             if (command.beanName().isBlank()) {
-                throw new IllegalArgumentException("beanName must not be blank");
+                throw new BeanValidationException("beanName must not be blank");
             }
             this.beanName = command.beanName();
         }
@@ -120,7 +121,7 @@ public class Bean {
         }
         if (command.roastingPoint() != null) {
             if (command.roastingPoint() < 0 || command.roastingPoint() >100) {
-                throw new IllegalArgumentException("roastingPoint must be between 0 and 100");
+                throw new BeanValidationException("roastingPoint must be between 0 and 100");
             }
             this.roastingPoint = command.roastingPoint();
         }
@@ -129,7 +130,7 @@ public class Bean {
         }
         if (command.price() != null) {
             if (command.price() < 0) {
-                throw new IllegalArgumentException("price must be non-negative");
+                throw new BeanValidationException("price must be non-negative");
             }
             this.price = command.price();
         }

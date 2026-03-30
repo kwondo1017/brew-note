@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.travelslog.brewnote.bean.entity.Bean;
 import org.travelslog.brewnote.bean.entity.command.BeanCreateCommand;
 import org.travelslog.brewnote.bean.entity.command.BeanUpdateCommand;
+import org.travelslog.brewnote.bean.exception.BeanNotFoundException;
 import org.travelslog.brewnote.bean.repository.BeanRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class BeanService {
     @Transactional(readOnly = true)
     public Bean getBean(Long id) {
         return beanRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Bean not found"));
+                .orElseThrow(() -> new BeanNotFoundException("Bean not found"));
     }
 
     @Transactional(readOnly = true)
@@ -43,6 +44,7 @@ public class BeanService {
 
     @Transactional
     public void deleteBean(Long id) {
-        beanRepository.deleteById(id);
+        Bean bean = getBean(id);
+        beanRepository.delete(bean);
     }
 }
